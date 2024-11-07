@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "rv-prediction-app"
+version = "0.1.0"
+description = "RV Value Prediction Application"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8.8,<3.9.7 || >3.9.7,<4.0"
+streamlit = "^1.31.0"
+pandas = "~1.5.0"
+plotly = "^5.18.0"
+numpy = "~1.24.0"
+statsmodels = "~0.13.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
