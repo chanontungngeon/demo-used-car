@@ -28,10 +28,27 @@ class DataHandler:
 
     @staticmethod
     def filter_data(df: pd.DataFrame, make: str, model: str, trim: str, year: int) -> pd.DataFrame:
-        """Filter data based on selections"""
+        """Filter data based on selections and exclude sensitive information"""
+        # Define columns to display
+        display_columns = [
+            'Make_motto', 'Model_I', 'Make_jato', 'Model_jato', 
+            'Version_Name_jato', 'DatePriced', 'Year', 'MSRP', 
+            'Mileage', 'Age', 'SoldPrice', 'YearDatePriced', 
+            'Color', 'Make_Group', 'Condition', 'RV_value'
+        ]
+        
+        # Filter data
         mask = (
             (df.Model_I == model) &
             (df.Version_Name_jato == trim) &
             (df.Year == year)
         )
-        return df[mask].copy()
+        
+        # Select only specified columns
+        filtered_df = df[mask].copy()
+        
+        # Only keep allowed columns that exist in the dataframe
+        existing_columns = [col for col in display_columns if col in filtered_df.columns]
+        filtered_df = filtered_df[existing_columns]
+        
+        return filtered_df
